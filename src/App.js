@@ -1,25 +1,30 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
+import Card from './components/Card';
+import PCard from './components/Card';
 import './App.css';
+import Form from './components/Form';
+import { Switch } from '@mui/material';
 
-function App() {
+const App = () => {
+  const [showPCard, setShowPCard] = useState(false);
+
+  const togglePCard = () => {
+    setShowPCard(!showPCard);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <Form />
+      <div className='card'>
+        <Switch
+          checked={showPCard}
+          onChange={togglePCard}
+          inputProps={{ 'aria-label': 'Toggle PCard' }}
+        />
+        {showPCard && <PCard />}
+      </div>
     </div>
   );
-}
+};
 
 export default App;
